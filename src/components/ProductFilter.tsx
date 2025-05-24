@@ -50,9 +50,8 @@ const ProductFilter = ({
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
-            <SelectItem value="electronics">Electronics</SelectItem>
-            <SelectItem value="camera">Camera</SelectItem>
-            <SelectItem value="gaming">Gaming</SelectItem>
+            <SelectItem value="mens-wear">Men's Wear</SelectItem>
+            <SelectItem value="womens-wear">Women's Wear</SelectItem>
           </SelectContent>
         </Select>
       </div>

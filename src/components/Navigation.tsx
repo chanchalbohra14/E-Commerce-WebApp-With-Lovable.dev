@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -117,7 +118,7 @@ const Navigation = () => {
                       <Search className="mr-2 h-4 w-4" />
                       Search
                     </Button>
-                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleCart(); setIsOpen(false); }} className="relative">
+                    <Button variant="outline" className="w-full justify-start relative" onClick={() => { handleCart(); setIsOpen(false); }}>
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Cart
                       {getTotalItems() > 0 && (

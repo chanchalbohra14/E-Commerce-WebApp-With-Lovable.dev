@@ -25,57 +25,75 @@ const Products = () => {
   const [products] = useState([
     {
       id: 1,
-      name: "Premium Wireless Headphones",
-      price: 299.99,
-      image: "/placeholder.svg",
+      name: "Women's Elegant Blazer",
+      price: 129.99,
+      image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?w=500&h=500&fit=crop&crop=center",
       rating: 4.8,
       reviews: 124,
-      category: "electronics"
+      category: "womens-wear"
     },
     {
       id: 2,
-      name: "Smart Fitness Watch",
-      price: 199.99,
-      image: "/placeholder.svg",
+      name: "Women's Professional Shirt",
+      price: 79.99,
+      image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=500&h=500&fit=crop&crop=center",
       rating: 4.6,
       reviews: 89,
-      category: "electronics"
+      category: "womens-wear"
     },
     {
       id: 3,
-      name: "Portable Bluetooth Speaker",
+      name: "Men's Checkered Dress Shirt",
       price: 89.99,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=500&h=500&fit=crop&crop=center",
       rating: 4.9,
       reviews: 156,
-      category: "electronics"
+      category: "mens-wear"
     },
     {
       id: 4,
-      name: "Professional Camera Lens",
-      price: 599.99,
-      image: "/placeholder.svg",
+      name: "Women's Summer Dress",
+      price: 95.99,
+      image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=500&h=500&fit=crop&crop=center",
       rating: 4.7,
       reviews: 78,
-      category: "camera"
+      category: "womens-wear"
     },
     {
       id: 5,
-      name: "Wireless Gaming Mouse",
-      price: 79.99,
-      image: "/placeholder.svg",
+      name: "Men's Casual T-Shirt",
+      price: 39.99,
+      image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500&h=500&fit=crop&crop=center",
       rating: 4.5,
       reviews: 92,
-      category: "gaming"
+      category: "mens-wear"
     },
     {
       id: 6,
-      name: "4K Webcam",
+      name: "Women's Designer Handbag",
       price: 149.99,
-      image: "/placeholder.svg",
+      image: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500&h=500&fit=crop&crop=center",
       rating: 4.6,
       reviews: 67,
-      category: "camera"
+      category: "womens-wear"
+    },
+    {
+      id: 7,
+      name: "Men's Leather Jacket",
+      price: 299.99,
+      image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=500&h=500&fit=crop&crop=center",
+      rating: 4.8,
+      reviews: 143,
+      category: "mens-wear"
+    },
+    {
+      id: 8,
+      name: "Women's Floral Blouse",
+      price: 69.99,
+      image: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=500&h=500&fit=crop&crop=center",
+      rating: 4.4,
+      reviews: 55,
+      category: "womens-wear"
     }
   ]);
 
@@ -111,7 +129,7 @@ const Products = () => {
           <div className="text-center mb-12">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">Our Products</h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Discover our complete collection of premium products at unbeatable prices.
+              Discover our complete collection of premium fashion at unbeatable prices.
             </p>
           </div>
 
