@@ -3,12 +3,25 @@ import { useState } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
+import ProductFilter from "@/components/ProductFilter";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Filter } from "lucide-react";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [priceRange, setPriceRange] = useState([0, 1000]);
+  const [selectedCategory, setSelectedCategory] = useState("all");
+  const [sortBy, setSortBy] = useState("name");
+
   const [products] = useState([
     {
       id: 1,
@@ -16,7 +29,8 @@ const Products = () => {
       price: 299.99,
       image: "/placeholder.svg",
       rating: 4.8,
-      reviews: 124
+      reviews: 124,
+      category: "electronics"
     },
     {
       id: 2,
@@ -24,7 +38,8 @@ const Products = () => {
       price: 199.99,
       image: "/placeholder.svg",
       rating: 4.6,
-      reviews: 89
+      reviews: 89,
+      category: "electronics"
     },
     {
       id: 3,
@@ -32,7 +47,8 @@ const Products = () => {
       price: 89.99,
       image: "/placeholder.svg",
       rating: 4.9,
-      reviews: 156
+      reviews: 156,
+      category: "electronics"
     },
     {
       id: 4,
@@ -40,7 +56,8 @@ const Products = () => {
       price: 599.99,
       image: "/placeholder.svg",
       rating: 4.7,
-      reviews: 78
+      reviews: 78,
+      category: "camera"
     },
     {
       id: 5,
@@ -48,7 +65,8 @@ const Products = () => {
       price: 79.99,
       image: "/placeholder.svg",
       rating: 4.5,
-      reviews: 92
+      reviews: 92,
+      category: "gaming"
     },
     {
       id: 6,
@@ -56,13 +74,33 @@ const Products = () => {
       price: 149.99,
       image: "/placeholder.svg",
       rating: 4.6,
-      reviews: 67
+      reviews: 67,
+      category: "camera"
     }
   ]);
 
-  const filteredProducts = products.filter(product =>
-    product.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const filteredProducts = products
+    .filter(product =>
+      product.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    .filter(product => 
+      selectedCategory === "all" || product.category === selectedCategory
+    )
+    .filter(product =>
+      product.price >= priceRange[0] && product.price <= priceRange[1]
+    )
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "price-low":
+          return a.price - b.price;
+        case "price-high":
+          return b.price - a.price;
+        case "rating":
+          return b.rating - a.rating;
+        default:
+          return a.name.localeCompare(b.name);
+      }
+    });
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -88,10 +126,27 @@ const Products = () => {
                 className="pl-10"
               />
             </div>
-            <Button variant="outline">
-              <Filter className="mr-2 h-4 w-4" />
-              Filter
-            </Button>
+            <Sheet open={isFilterOpen} onOpenChange={setIsFilterOpen}>
+              <SheetTrigger asChild>
+                <Button variant="outline">
+                  <Filter className="mr-2 h-4 w-4" />
+                  Filter
+                </Button>
+              </SheetTrigger>
+              <SheetContent>
+                <SheetHeader>
+                  <SheetTitle>Filter Products</SheetTitle>
+                </SheetHeader>
+                <ProductFilter
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
+                  selectedCategory={selectedCategory}
+                  setSelectedCategory={setSelectedCategory}
+                  sortBy={sortBy}
+                  setSortBy={setSortBy}
+                />
+              </SheetContent>
+            </Sheet>
           </div>
 
           {/* Products Grid */}

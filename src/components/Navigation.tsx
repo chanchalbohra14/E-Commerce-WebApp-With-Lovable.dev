@@ -3,11 +3,13 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, ShoppingCart, User, Search } from "lucide-react";
+import { useCart } from "@/contexts/CartContext";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
+  const { getTotalItems } = useCart();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -25,8 +27,7 @@ const Navigation = () => {
   };
 
   const handleCart = () => {
-    // TODO: Implement cart functionality
-    console.log("Cart clicked");
+    navigate('/cart');
   };
 
   const handleProfile = () => {
@@ -71,8 +72,13 @@ const Navigation = () => {
             <Button variant="ghost" size="sm" onClick={handleSearch}>
               <Search className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm" onClick={handleCart}>
+            <Button variant="ghost" size="sm" onClick={handleCart} className="relative">
               <ShoppingCart className="h-4 w-4" />
+              {getTotalItems() > 0 && (
+                <span className="absolute -top-1 -right-1 bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                  {getTotalItems()}
+                </span>
+              )}
             </Button>
             <Button variant="ghost" size="sm" onClick={handleProfile}>
               <User className="h-4 w-4" />
@@ -111,9 +117,14 @@ const Navigation = () => {
                       <Search className="mr-2 h-4 w-4" />
                       Search
                     </Button>
-                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleCart(); setIsOpen(false); }}>
+                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleCart(); setIsOpen(false); }} className="relative">
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Cart
+                      {getTotalItems() > 0 && (
+                        <span className="ml-auto bg-blue-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                          {getTotalItems()}
+                        </span>
+                      )}
                     </Button>
                     <Button variant="outline" className="w-full justify-start" onClick={() => { handleProfile(); setIsOpen(false); }}>
                       <User className="mr-2 h-4 w-4" />
