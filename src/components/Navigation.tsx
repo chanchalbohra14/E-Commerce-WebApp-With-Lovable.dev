@@ -1,6 +1,5 @@
-
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, ShoppingCart, User, Search } from "lucide-react";
@@ -8,6 +7,7 @@ import { Menu, ShoppingCart, User, Search } from "lucide-react";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navItems = [
     { name: "Home", path: "/" },
@@ -18,6 +18,23 @@ const Navigation = () => {
 
   const isActivePath = (path: string) => {
     return location.pathname === path;
+  };
+
+  const handleSearch = () => {
+    navigate('/products');
+  };
+
+  const handleCart = () => {
+    // TODO: Implement cart functionality
+    console.log("Cart clicked");
+  };
+
+  const handleProfile = () => {
+    navigate('/auth');
+  };
+
+  const handleSignIn = () => {
+    navigate('/auth');
   };
 
   return (
@@ -51,16 +68,16 @@ const Navigation = () => {
 
           {/* Desktop Actions */}
           <div className="hidden md:flex items-center space-x-4">
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={handleSearch}>
               <Search className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={handleCart}>
               <ShoppingCart className="h-4 w-4" />
             </Button>
-            <Button variant="ghost" size="sm">
+            <Button variant="ghost" size="sm" onClick={handleProfile}>
               <User className="h-4 w-4" />
             </Button>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button size="sm" className="bg-blue-600 hover:bg-blue-700 text-white" onClick={handleSignIn}>
               Sign In
             </Button>
           </div>
@@ -90,19 +107,19 @@ const Navigation = () => {
                     </Link>
                   ))}
                   <div className="border-t pt-4 space-y-2">
-                    <Button variant="outline" className="w-full justify-start">
+                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleSearch(); setIsOpen(false); }}>
                       <Search className="mr-2 h-4 w-4" />
                       Search
                     </Button>
-                    <Button variant="outline" className="w-full justify-start">
+                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleCart(); setIsOpen(false); }}>
                       <ShoppingCart className="mr-2 h-4 w-4" />
                       Cart
                     </Button>
-                    <Button variant="outline" className="w-full justify-start">
+                    <Button variant="outline" className="w-full justify-start" onClick={() => { handleProfile(); setIsOpen(false); }}>
                       <User className="mr-2 h-4 w-4" />
                       Account
                     </Button>
-                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
+                    <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white" onClick={() => { handleSignIn(); setIsOpen(false); }}>
                       Sign In
                     </Button>
                   </div>

@@ -1,14 +1,15 @@
-
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ShoppingCart, Star, Truck, Shield, Headphones } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import ProductCard from "@/components/ProductCard";
 
 const Index = () => {
+  const navigate = useNavigate();
+  
   const [featuredProducts] = useState([
     {
       id: 1,
@@ -64,11 +65,20 @@ const Index = () => {
               Your one-stop destination for premium quality products with fast delivery and exceptional customer service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3">
+              <Button 
+                size="lg" 
+                className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3"
+                onClick={() => navigate('/products')}
+              >
                 <ShoppingCart className="mr-2 h-5 w-5" />
                 Shop Now
               </Button>
-              <Button variant="outline" size="lg" className="px-8 py-3">
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="px-8 py-3"
+                onClick={() => navigate('/about')}
+              >
                 Learn More
               </Button>
             </div>
@@ -141,7 +151,12 @@ const Index = () => {
           </div>
           
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="px-8">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="px-8"
+              onClick={() => navigate('/products')}
+            >
               View All Products
             </Button>
           </div>
@@ -156,7 +171,11 @@ const Index = () => {
             Join thousands of satisfied customers and experience the difference.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-blue-600 hover:bg-gray-100 px-8">
+            <Button 
+              size="lg" 
+              className="bg-white text-blue-600 hover:bg-gray-100 px-8"
+              onClick={() => navigate('/auth')}
+            >
               Create Account
             </Button>
             <Link to="/contact">
